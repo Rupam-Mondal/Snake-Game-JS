@@ -48,13 +48,19 @@ function move() {
     }
     // Add new head to the front of the snake
     snake.unshift(head);
+
+    if(checkcollision()){
+        clearInterval(gameInterval)
+        return
+    }
     
     if(head.x == food.x && head.y == food.y){
         food.x = Math.floor(Math.random() * 20)
         food.y = Math.floor(Math.random() * 20)
-        clearInterval()
+        clearInterval(gameInterval)
         gameInterval = setInterval(() => {
             move()
+            checkcollision()
             renderElements()
         } , speed);
     }
@@ -67,10 +73,18 @@ function startGame(){
     gamestarted = true
     gameInterval = setInterval(() => {
         move()
+        checkcollision()
         renderElements()
     }, speed);
 }
-
+function checkcollision(){
+    const head = snake[0]
+    if (head.x < 0 || head.x >= 20 || head.y < 0 || head.y >= 20) {
+        alert("Game Over")
+        return true
+    }
+    return false
+}
 function alleventlistner(event){
     if(!gamestarted){
         startGame()
