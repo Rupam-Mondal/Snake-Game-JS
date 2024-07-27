@@ -1,9 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -12,25 +12,33 @@ body{
     background-color: #414141;
     flex-direction: column;
 }
-.board{
+
+.scoreboard {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #ffffff;
+}
+
+.board {
     height: 450px;
     width: 450px;
     background-color: #7c7777;
     display: grid;
-    grid-template-columns: repeat(20 , 1fr);
+    grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(20, 1fr);
 }
-.food{
-    background-color: red;
+
+.food {
     border-radius: 100%;
     animation: Blink 1s infinite;
 }
+
 @keyframes Blink {
-    50%{
+    50% {
         opacity: 0.5;
     }
 }
-.snake{
-    background-color: #414141;
+
+.snake {
     border-radius: 8px;
 }

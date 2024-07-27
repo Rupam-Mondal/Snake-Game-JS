@@ -1,24 +1,30 @@
 const board = document.querySelector('.board')
 console.log(board)
 let snake = [{ x: 12, y: 16 }]
-let food = {x:8 , y : 9}
+let food = { x: 8, y: 9 }
+const foodCount = document.getElementById('score')
+let value = Number(foodCount.innerHTML)
 let direction = 'right'
 let gameInterval
 let gamestarted = false
 let speed = 400
 
 //Render the snake and food
-function renderElements(){
+function renderElements() {
     board.innerHTML = ""
     //snake render
     snake.forEach((cell) => {
         const celldiv = document.createElement('div')
+        celldiv.style.backgroundImage = 'url(Pictures/snake.png)'
+        celldiv.style.backgroundSize = 'cover'
         celldiv.style.gridColumnStart = cell.x
         celldiv.style.gridRowStart = cell.y
         celldiv.classList.add('snake')
         board.appendChild(celldiv)
     })
     const fooddiv = document.createElement('div')
+    fooddiv.style.backgroundImage = 'url(Pictures/apple.png)'
+    fooddiv.style.backgroundSize = 'cover'
     fooddiv.style.gridColumnStart = food.x
     fooddiv.style.gridRowStart = food.y
     fooddiv.classList.add('food')
@@ -26,9 +32,9 @@ function renderElements(){
 }
 
 //move the snake
-function move(){
-    let head = {...snake[0]}
-    switch(direction){
+function move() {
+    let head = { ...snake[0] }
+    switch (direction) {
         case 'right':
             head.x++
             break
@@ -47,7 +53,7 @@ function move(){
     }
     snake.unshift(head)
     // food eating logic
-    if(head.x == food.x && head.y == food.y){
+    if (head.x == food.x && head.y == food.y) {
         food.x = Math.floor(Math.random() * 20) + 1
         food.y = Math.floor(Math.random() * 20) + 1
         speed = speed - 20
@@ -56,26 +62,29 @@ function move(){
             move()
             checkCollision()
             renderElements()
-        } , speed);
+        }, speed);
+        value += 1;
+        console.log(value);
+        foodCount.innerHTML = `${value}`
     }
-    else{
+    else {
         snake.pop()
     }
 }
 
 //start game function
-function startGame(){
+function startGame() {
     gamestarted = true
     clearInterval(gameInterval)
     gameInterval = setInterval(() => {
         move()
         checkCollision()
         renderElements()
-    } , speed); 
+    }, speed);
 }
 
 //collision checking
-function checkCollision(){
+function checkCollision() {
     let head = { ...snake[0] }
 
     if (head.x < 1 || head.x > 20 || head.y < 1 || head.y > 20) {
@@ -86,9 +95,9 @@ function checkCollision(){
 }
 
 //This functon will hear all event listener
-function alleventListner(event){
+function alleventListner(event) {
 
-    if(!gamestarted){
+    if (!gamestarted) {
         startGame()
     }
     switch (event.key) {
@@ -106,4 +115,4 @@ function alleventListner(event){
             break;
     }
 }
-document.addEventListener('keydown' , alleventListner)
+document.addEventListener('keydown', alleventListner)
