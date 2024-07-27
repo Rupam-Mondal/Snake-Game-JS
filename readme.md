@@ -1,6 +1,6 @@
 # Snake Game
 # Demo
-- [Click here](https://66a46c7b7b4de5a5eb4154aa--sweet-squirrel-f5cec8.netlify.app/)
+- [Click here](https://rupam-mondal.github.io/Snake-Game-JS/)
 
 ![Snake Game](Pictures/ss1.png)
 
