@@ -29,7 +29,6 @@ body {
 }
 
 .food {
-    background-color: red;
     border-radius: 100%;
     animation: Blink 1s infinite;
 }
@@ -41,6 +40,5 @@ body {
 }
 
 .snake {
-    background-color: #414141;
     border-radius: 8px;
 }
