@@ -54,6 +54,7 @@ function move(){
         clearInterval(gameInterval)
         gameInterval = setInterval(() => {
             move()
+            checkCollision()
             renderElements()
         } , speed);
     }
@@ -68,8 +69,20 @@ function startGame(){
     clearInterval(gameInterval)
     gameInterval = setInterval(() => {
         move()
+        checkCollision()
         renderElements()
     } , speed); 
+}
+
+//collision checking
+function checkCollision(){
+    let head = { ...snake[0] }
+
+    if (head.x < 1 || head.x > 20 || head.y < 1 || head.y > 20) {
+        clearInterval(gameInterval);
+        gamestarted = false;
+        alert('Game Over! Press any key to restart.');
+    }
 }
 
 //This functon will hear all event listener
