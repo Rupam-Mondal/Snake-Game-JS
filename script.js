@@ -91,7 +91,7 @@ function checkCollision() {
     if (head.x < 1 || head.x > 18 || head.y < 1 || head.y > 18) {
         clearInterval(gameInterval);
         gamestarted = false;
-        alert('Game Over! Press any key to restart.');
+        alert("Game over")
     }
 }
 
